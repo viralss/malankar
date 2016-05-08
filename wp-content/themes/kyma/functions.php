@@ -358,3 +358,7 @@ function kyma_theme_wrapper_end()
     ?>
     </div></div></div></section>
 <?php }
+
+if ( ! is_admin() ) {
+    add_filter( 'show_admin_bar', '__return_false' );
+} 

@@ -22,30 +22,14 @@ get_header(); ?>
                         while (have_posts()):
                         the_post(); ?>
                         <div id="<?php get_the_id(); ?>" <?php post_class('clearfix'); ?> >
-                            <div class="post_title_con">
-                                <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
-							<span class="meta">
-								<span class="meta_part">
-									<a href="#">
-                                        <i class="fa fa-clock-o"></i>
-                                        <span><?php echo esc_attr(get_the_date(get_option('date_format'), true)); ?></span>
-                                    </a>
-								</span>
-								<span class="meta_part">
-									<a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
-                                        <i class="fa fa-user"></i>
-                                        <span><?php the_author(); ?></span>
-                                    </a>
-								</span>
-							</span>
-                            </div>
+                  
                             <?php if (isset($icon) && $icon == 'fa fa-image') { ?>
                                 <div class="post_format_con">
-							<span>
-								<a href="#">
+                            <span>
+                                <a href="#">
                                     <i class="<?php echo esc_attr($icon); ?>"></i>
                                 </a>
-							</span>
+                            </span>
                                 </div>
                             <?php } ?>
                             <div class="feature_inner">
@@ -97,7 +81,7 @@ get_header(); ?>
                     <!-- End Comments Container -->
                 </div>
                 <!-- End blog List -->
-                <?php get_sidebar(); ?>
+                
             </div>
     </section>
     <!-- End All Content -->

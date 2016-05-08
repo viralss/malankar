@@ -11,7 +11,6 @@
 <html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo('charset'); ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $kyma_theme_options = kyma_theme_options(); ?>
     <?php wp_head(); ?>
@@ -22,8 +21,9 @@ if ($kyma_theme_options['site_layout'] != "") {
 }
 $class .= isset($kyma_theme_options['headercolorscheme']) ? $kyma_theme_options['headercolorscheme'] : ''; ?>
 <body <?php body_class("menu_button_mode preloader3 menu_button_mode " . $class); ?>>
-<span id="stickymenu"
-      style="display:none;"><?php echo isset($kyma_theme_options['headersticky']) ? esc_attr($kyma_theme_options['headersticky']) : 1 ; ?></span>
+
+
+<span id="stickymenu" style="display:none;"><?php echo isset($kyma_theme_options['headersticky']) ? esc_attr($kyma_theme_options['headersticky']) : 1 ; ?></span>
 
 <div id="preloader">
     <div class="spinner">
@@ -39,7 +39,7 @@ $class .= isset($kyma_theme_options['headercolorscheme']) ? $kyma_theme_options[
         <div class="topbar <?php echo esc_attr($kyma_theme_options['topbarcolor']); ?>">
             <!-- class ( topbar_colored  ) -->
             <div class="content clearfix">
-				<?php if ($kyma_theme_options['contact_info_header']) { ?>
+                <?php if ($kyma_theme_options['contact_info_header']) { ?>
                 <div class="top_details clearfix f_left"><?php
                     if ($kyma_theme_options['contact_phone']) {
                         ?>
@@ -51,7 +51,7 @@ $class .= isset($kyma_theme_options['headercolorscheme']) ? $kyma_theme_options[
                         ?>
                         <span><i class="fa fa-envelope-o"></i><span
                                 class="title"><?php _e('Email :', 'kyma') ?></span>
-							<a href="mailto:<?php echo sanitize_email($kyma_theme_options['contact_email']); ?>"><?php echo sanitize_email($kyma_theme_options['contact_email']); ?></a></span>
+                            <a href="mailto:<?php echo sanitize_email($kyma_theme_options['contact_email']); ?>"><?php echo sanitize_email($kyma_theme_options['contact_email']); ?></a></span>
                     <?php } ?>
                 </div>
                 <?php } if ($kyma_theme_options['social_media_header']) { ?>
@@ -108,10 +108,10 @@ $class .= isset($kyma_theme_options['headercolorscheme']) ? $kyma_theme_options[
                 } ?>
             </div>
             <!-- End content -->
-			<span class="top_expande not_expanded">
-				<i class="no_exp fa fa-angle-double-down"></i>
-				<i class="exp fa fa-angle-double-up"></i>
-			</span>
+            <span class="top_expande not_expanded">
+                <i class="no_exp fa fa-angle-double-down"></i>
+                <i class="exp fa fa-angle-double-up"></i>
+            </span>
         </div>
         <!-- End topbar -->
         <div id="navigation_bar"
@@ -134,9 +134,9 @@ $class .= isset($kyma_theme_options['headercolorscheme']) ? $kyma_theme_options[
                 </div>
                 <nav id="main_nav">
                     <div id="nav_menu">
-						<span class="mobile_menu_trigger">
-						    <a href="#" class="nav_trigger"><span></span></a>
-						</span>
+                        <span class="mobile_menu_trigger">
+                            <a href="#" class="nav_trigger"><span></span></a>
+                        </span>
                         <?php wp_nav_menu(array(
                                 'theme_location' => 'primary',
                                 'menu_class' => 'clearfix horizontal_menu',
@@ -149,9 +149,22 @@ $class .= isset($kyma_theme_options['headercolorscheme']) ? $kyma_theme_options[
                         ); ?>
                     </div>
                 </nav>
+        <div style="text-align: right;padding-top: 25px;font-weight: 600;">
+                    <?php
+                        if ( is_user_logged_in() ) {
+                            
+                        $current_user = wp_get_current_user();
+                        /**
+                         * @example Safe usage: $current_user = wp_get_current_user();
+                         * if ( !($current_user instanceof WP_User) )
+                         *     return;
+                         */
+                        echo 'Hi ' . $current_user->display_name . '!!';
+                        }
+                    ?>
+                </div>
                 <!-- End Nav -->
                 <div class="clear"></div>
             </div>
         </div>
     </header>
-    <!-- End Main Header -->
